@@ -125,5 +125,17 @@ public class Character {
 	public void addSkill(Skill aSkill) {
 		skills.add(aSkill);
 	}
+	
+	//TODO: add points to primary profile stat
+	//Might change this
+	public void addPrimaryPoints(int points, String stat) {
+		primary.addPoints(points, stat);
+	}
+	
+	//TODO: add points to secondary profile stat
+	//Might change this
+	public void addSecondaryPoints(int points, String stat) {
+		secondary.addPoints(points, stat);
+	}
 
 }
