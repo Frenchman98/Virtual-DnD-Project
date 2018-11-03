@@ -1,6 +1,9 @@
 package dnd.players;
 
+import java.util.ArrayList;
+
 import dnd.character.Character;
+import dnd.transactions.*;
 
 public class Player {
 	private String username;
@@ -8,6 +11,7 @@ public class Player {
 	private int experience;
 	private boolean loggedIn = false;
 	private Character theCharacter;
+	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
 	//Constructors
 	public Player() {
@@ -62,6 +66,15 @@ public class Player {
 		this.theCharacter = theCharacter;
 	}
 	
+	public ArrayList<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(ArrayList<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
+	
 	public void addExperience(int exp) {
 		experience += exp;
 	}
@@ -83,5 +96,45 @@ public class Player {
 	public void changeWeapon(Weapon aWeapon) {
 		
 	}
+	
+	//If password is incorrect, loggedIn should stay false and ask the user to try again
+	public void logIn(String aUsername, String aPassword) {
+		if(aUsername.equals(username)) {
+			if(aPassword.equals(password)) {
+				loggedIn = true;
+				System.out.println("Log in successful");
+				return;			
+			}
+			else
+			{
+				loggedIn = false;
+				System.out.println("Incorrect password. Please try again.");					return;
+			}
+		}
+		else {
+			System.out.println("Incorrect username. Please try again.");
+		}
+			
+	}
+		
+	public void logOut() {
+			loggedIn = false;
+	}
+	
+	//TODO: Add aTransaction and execute the transaction (remove money or experience
+	//Adds skill to Character
+	public void makeXPTransaction(XPSkillTransaction aTransaction) {
+		transactions.add(aTransaction);
+		
+	}
+	
+	//TODO: Add aTransaction and execute the transaction (remove money or experience
+	//Adds resource to Character
+	public void makeResourceTransaction(ResourceTransaction aTransaction) {
+		transactions.add(aTransaction);
+	}
+	
+	
+	
 	
 }

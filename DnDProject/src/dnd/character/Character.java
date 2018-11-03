@@ -128,6 +128,8 @@ public class Character {
 	
 	//TODO: add points to primary profile stat
 	//Might change this
+	//TODO: If a Strength or Toughness has a new 10s place then
+	//Strength and Toughness Bonus need to be adjusted accordingly
 	public void addPrimaryPoints(int points, String stat) {
 		primary.addPoints(points, stat);
 	}
@@ -136,6 +138,15 @@ public class Character {
 	//Might change this
 	public void addSecondaryPoints(int points, String stat) {
 		secondary.addPoints(points, stat);
+	}
+	
+	public void removePrimaryPoints(int points, String stat) {
+		//multiply by -1 for same functionality as addPoints but with a negative number
+		primary.addPoints(points * -1, stat);
+	}
+	
+	public void removeSecondaryPoints(int points, String stat) {
+		secondary.addPoints(points * -1, stat);
 	}
 
 }

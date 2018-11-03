@@ -30,9 +30,14 @@ public class PrimaryProfile {
 	}
 
 	public void setWeaponSkill(int weaponSkill) {
-		if(weaponSkill > 100) {
+		int newVal = this.weaponSkill + weaponSkill;
+		if(newVal > 100) {
 			this.weaponSkill = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.weaponSkill = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
@@ -46,9 +51,14 @@ public class PrimaryProfile {
 	}
 
 	public void setBallisticSkill(int ballisticSkill) {
-		if(ballisticSkill > 100) {
+		int newVal = this.ballisticSkill + ballisticSkill;
+		if(newVal > 100) {
 			this.ballisticSkill = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.ballisticSkill = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
@@ -62,9 +72,14 @@ public class PrimaryProfile {
 	}
 
 	public void setStrength(int strength) {
-		if(strength > 100) {
+		int newVal = this.strength + strength;
+		if(newVal > 100) {
 			this.strength = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.strength = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
@@ -78,9 +93,14 @@ public class PrimaryProfile {
 	}
 
 	public void setToughness(int toughness) {
-		if(toughness > 100) {
+		int newVal = this.toughness + toughness;
+		if(newVal > 100) {
 			this.toughness = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.toughness = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
@@ -94,9 +114,14 @@ public class PrimaryProfile {
 	}
 
 	public void setAgility(int agility) {
-		if(agility > 100) {
+		int newVal = this.agility + agility;
+		if(newVal > 100) {
 			this.agility = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.agility = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
@@ -110,9 +135,14 @@ public class PrimaryProfile {
 	}
 
 	public void setIntelligence(int intelligence) {
-		if(intelligence > 100) {
+		int newVal = this.intelligence + intelligence;
+		if(newVal > 100) {
 			this.intelligence = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.intelligence = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
@@ -126,9 +156,14 @@ public class PrimaryProfile {
 	}
 
 	public void setWillpower(int willpower) {
-		if(willpower > 100) {
+		int newVal = this.willpower + willpower;
+		if(newVal > 100) {
 			this.willpower = 100;
 			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+		}
+		else if(newVal < 0) {
+			this.willpower = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile.");
 		}
 		else
 		{
