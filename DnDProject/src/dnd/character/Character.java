@@ -16,7 +16,6 @@ public class Character {
 	private Armor equippedArmor;
 	private Weapon equippedWeapon;
 	private ArrayList<Skill> skills = new ArrayList<Skill>();
-	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
 	//Constructors
 	public Character() {
@@ -86,14 +85,6 @@ public class Character {
 	public void setSkills(ArrayList<Skill> skills) {
 		this.skills = skills;
 	}
-
-	public ArrayList<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(ArrayList<Transaction> transactions) {
-		this.transactions = transactions;
-	}
 	
 	public Armor getEquippedArmor() {
 		return equippedArmor;
@@ -111,11 +102,6 @@ public class Character {
 		equippedWeapon = weapon;
 	}
 	
-	//TODO: Add aTransaction and execute the transaction (remove money or experience
-	public void makeTransaction(Transaction aTransaction) {
-		transactions.add(aTransaction);
-	}
-	
 	//TODO: After resource transaction, add Resource
 	public void addResource(Resource aResource) {
 		resources.add(aResource);
@@ -131,7 +117,27 @@ public class Character {
 	//TODO: If a Strength or Toughness has a new 10s place then
 	//Strength and Toughness Bonus need to be adjusted accordingly
 	public void addPrimaryPoints(int points, String stat) {
-		primary.addPoints(points, stat);
+		if(stat.equals("Strength")) {
+			int oldTens = (this.getPrimary().getStrength()) / 10;
+			primary.addPoints(points, stat);
+			int newTens = this.getPrimary().getStrength() / 10; 
+			if(newTens != oldTens) {
+				secondary.setStrengthBonus(newTens);
+			}
+		}
+		else if(stat.equals("Toughenss")) {
+			int oldTens = (this.getPrimary().getToughness()) / 10;
+			primary.addPoints(points, stat);
+			int newTens = this.getPrimary().getToughness() / 10; 
+			if(newTens != oldTens) {
+				secondary.setToughnessBonus(newTens);
+			}
+			
+		}
+		else {
+			primary.addPoints(points, stat);
+		}
+		
 	}
 	
 	//TODO: add points to secondary profile stat
