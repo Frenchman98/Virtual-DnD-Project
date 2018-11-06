@@ -2,10 +2,13 @@ package dnd.players;
 
 import java.util.ArrayList;
 
+import dnd.character.GameChar;
+import dnd.transactions.Transaction;
+
 public class DungeonMaster {
 	private String username;
 	private String password;
-	private ArrayList<Character> npcs = new ArrayList<Character>();
+	private ArrayList<GameChar> npcs = new ArrayList<GameChar>();
 	private boolean loggedIn = false;
 	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
@@ -41,11 +44,11 @@ public class DungeonMaster {
 		this.loggedIn = loggedIn;
 	}
 
-	public ArrayList<Character> getNPCs() {
+	public ArrayList<GameChar> getNPCs() {
 		return npcs;
 	}
 
-	public void setNPCs(ArrayList<Character> nPCs) {
+	public void setNPCs(ArrayList<GameChar> nPCs) {
 		npcs = nPCs;
 	}
 	
@@ -91,12 +94,12 @@ public class DungeonMaster {
 	
 	//TODO: Add NPC to NPCs arraylist
 	//Should these parameters be changed?
-	public void createNPC(Character npc) {
+	public void createNPC(GameChar npc) {
 		npcs.add(npc);
 		
 	}
 	
-	public void deleteNPC(Character npc) {
+	public void deleteNPC(GameChar npc) {
 		npcs.remove(npc);
 	}
 

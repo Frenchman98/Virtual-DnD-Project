@@ -1,10 +1,11 @@
 package dnd.character;
 
 import java.util.ArrayList;
+
 import dnd.resources.*;
 import dnd.skills.*;
 
-public class Character {
+public class GameChar {
 	private String name;
 	//Change race to a type? Not sure
 	private String race;
@@ -18,12 +19,12 @@ public class Character {
 	private ArrayList<Skill> skills = new ArrayList<Skill>();
 	
 	//Constructors
-	public Character() {
+	public GameChar() {
 		name = "Unknown character";
 		race = "Unknown race";
 	}
 	
-	public Character(String name, String race) {
+	public GameChar(String name, String race) {
 		this.name = name;
 		this.race = race;
 	}

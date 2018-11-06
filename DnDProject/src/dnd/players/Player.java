@@ -2,7 +2,9 @@ package dnd.players;
 
 import java.util.ArrayList;
 
-import dnd.character.Character;
+import dnd.character.GameChar;
+import dnd.resources.Armor;
+import dnd.resources.Weapon;
 import dnd.transactions.*;
 
 public class Player {
@@ -10,7 +12,7 @@ public class Player {
 	private String password;
 	private int experience;
 	private boolean loggedIn = false;
-	private Character theCharacter;
+	private GameChar theCharacter;
 	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
 	//Constructors
@@ -58,11 +60,11 @@ public class Player {
 		this.loggedIn = loggedIn;
 	}
 
-	public Character getTheCharacter() {
+	public GameChar getTheCharacter() {
 		return theCharacter;
 	}
 
-	public void setTheCharacter(Character theCharacter) {
+	public void setTheCharacter(GameChar theCharacter) {
 		this.theCharacter = theCharacter;
 	}
 	
