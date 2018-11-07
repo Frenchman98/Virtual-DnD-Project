@@ -20,6 +20,16 @@ public class SecondaryProfile {
 		insanityPoints = 0;
 		fortunePoints = 0;		
 	}
+	
+	public SecondaryProfile(int numberOfAttacks, int wounds, int strengthBonus, int toughnessBonus, int movementPoints, int insanityPoints, int fortunePoints) {
+		this.numberOfAttacks = numberOfAttacks;
+		this.wounds = wounds;
+		this.strengthBonus = strengthBonus;
+		this.toughnessBonus = toughnessBonus;
+		this.movementPoints = movementPoints;
+		this.insanityPoints = insanityPoints;
+		this.fortunePoints = fortunePoints;
+	}
 
 	//Getters and Setters
 	

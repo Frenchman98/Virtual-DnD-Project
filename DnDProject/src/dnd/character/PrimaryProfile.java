@@ -22,6 +22,19 @@ public class PrimaryProfile {
 		willpower = 0;
 		fellowship = 0;
 	}
+	
+	public PrimaryProfile(int weaponSkill, int ballisticSkill, int strength, int toughness, int agility, int intelligence, int willpower, int fellowship) 
+	{
+		this.weaponSkill = weaponSkill;
+		this.ballisticSkill = ballisticSkill;
+		this.strength = strength;
+		this.toughness = toughness;
+		this.agility = agility;
+		this.intelligence = intelligence;
+		this.willpower = willpower;
+		this.fellowship = fellowship;
+			
+	}
 
 	//Getters and Setters
 	
