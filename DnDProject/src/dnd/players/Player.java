@@ -1,7 +1,5 @@
 package dnd.players;
 
-import java.util.ArrayList;
-
 import dnd.character.GameChar;
 import dnd.resources.Armor;
 import dnd.resources.Weapon;

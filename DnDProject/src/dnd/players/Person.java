@@ -2,7 +2,9 @@ package dnd.players;
 
 import java.util.ArrayList;
 
+import dnd.transactions.ResourceTransaction;
 import dnd.transactions.Transaction;
+import dnd.transactions.XPSkillTransaction;
 
 public abstract class Person {
 	protected String username;
@@ -74,6 +76,12 @@ public abstract class Person {
 		loggedIn = false;
 	}
 	
+	//TODO: Add aTransaction and execute the transaction (remove money or experience
+	//Buy/sells skill to a Character
+	public abstract void makeXPTransaction(XPSkillTransaction aTransaction);
 	
+	//TODO: Add aTransaction and execute the transaction (remove money or experience
+	//Buy/sells resource to a Character
+	public abstract void makeResourceTransaction(ResourceTransaction aTransaction);
 
 }

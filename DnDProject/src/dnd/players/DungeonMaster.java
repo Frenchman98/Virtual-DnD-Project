@@ -3,7 +3,8 @@ package dnd.players;
 import java.util.ArrayList;
 
 import dnd.character.GameChar;
-import dnd.transactions.Transaction;
+import dnd.transactions.ResourceTransaction;
+import dnd.transactions.XPSkillTransaction;
 
 public class DungeonMaster extends Person{
 	private ArrayList<GameChar> npcs = new ArrayList<GameChar>();
@@ -76,6 +77,18 @@ public class DungeonMaster extends Person{
 	public void deleteNPC(GameChar npc) {
 		npcs.remove(npc);
 	}
-
+	
+	//TODO: Add aTransaction and execute the transaction (remove money or experience
+	//Adds skill to Character
+	public void makeXPTransaction(XPSkillTransaction aTransaction) {
+		transactions.add(aTransaction);
+		
+	}
+	
+	//TODO: Add aTransaction and execute the transaction (remove money or experience
+	//Adds resource to Character
+	public void makeResourceTransaction(ResourceTransaction aTransaction) {
+		transactions.add(aTransaction);
+	}
 
 }

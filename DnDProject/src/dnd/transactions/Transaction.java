@@ -6,6 +6,7 @@ import dnd.players.Player;
 
 public class Transaction {
 	
+	//Alli: I would recommend changing Player to Person since a DM is not a Player but both Player and DM are Person
 	private Player Buyer;
 	private Player Seller;
 	private int Amount;
