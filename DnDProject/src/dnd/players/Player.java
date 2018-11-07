@@ -7,13 +7,9 @@ import dnd.resources.Armor;
 import dnd.resources.Weapon;
 import dnd.transactions.*;
 
-public class Player {
-	private String username;
-	private String password;
+public class Player extends Person{
 	private int experience;
-	private boolean loggedIn = false;
 	private GameChar theCharacter;
-	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
 	//Constructors
 	public Player() {
@@ -28,21 +24,6 @@ public class Player {
 	}
 
 	//Getters and Setters
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public int getExperience() {
 		return experience;
@@ -52,14 +33,6 @@ public class Player {
 		this.experience = experience;
 	}
 
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-
-	public void setLoggedIn(boolean loggedIn) {
-		this.loggedIn = loggedIn;
-	}
-
 	public GameChar getTheCharacter() {
 		return theCharacter;
 	}
@@ -67,15 +40,6 @@ public class Player {
 	public void setTheCharacter(GameChar theCharacter) {
 		this.theCharacter = theCharacter;
 	}
-	
-	public ArrayList<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(ArrayList<Transaction> transactions) {
-		this.transactions = transactions;
-	}
-	
 	
 	public void addExperience(int exp) {
 		experience += exp;
@@ -89,6 +53,7 @@ public class Player {
 	//If Character doesn't own the armor then it cannot be equipped
 	//If they do, change setEquippedArmor
 	public void changeArmor(Armor aArmor) {
+		theCharacter.setEquippedArmor(aArmor);
 		
 	}
 	
@@ -96,32 +61,33 @@ public class Player {
 	//If character doesn't own the weapon then it cannot be equipped
 	//If they do, change setEquippedWeapon
 	public void changeWeapon(Weapon aWeapon) {
+		theCharacter.setEquippedWeapon(aWeapon);
 		
 	}
 	
-	//If password is incorrect, loggedIn should stay false and ask the user to try again
-	public void logIn(String aUsername, String aPassword) {
-		if(aUsername.equals(username)) {
-			if(aPassword.equals(password)) {
-				loggedIn = true;
-				System.out.println("Log in successful");
-				return;			
-			}
-			else
-			{
-				loggedIn = false;
-				System.out.println("Incorrect password. Please try again.");					return;
-			}
-		}
-		else {
-			System.out.println("Incorrect username. Please try again.");
-		}
-			
-	}
-		
-	public void logOut() {
-			loggedIn = false;
-	}
+//	//If password is incorrect, loggedIn should stay false and ask the user to try again
+//	public void logIn(String aUsername, String aPassword) {
+//		if(aUsername.equals(username)) {
+//			if(aPassword.equals(password)) {
+//				loggedIn = true;
+//				System.out.println("Log in successful");
+//				return;			
+//			}
+//			else
+//			{
+//				loggedIn = false;
+//				System.out.println("Incorrect password. Please try again.");					return;
+//			}
+//		}
+//		else {
+//			System.out.println("Incorrect username. Please try again.");
+//		}
+//			
+//	}
+//		
+//	public void logOut() {
+//			loggedIn = false;
+//	}
 	
 	//TODO: Add aTransaction and execute the transaction (remove money or experience
 	//Adds skill to Character

@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import dnd.character.GameChar;
 import dnd.transactions.Transaction;
 
-public class DungeonMaster {
-	private String username;
-	private String password;
+public class DungeonMaster extends Person{
 	private ArrayList<GameChar> npcs = new ArrayList<GameChar>();
-	private boolean loggedIn = false;
-	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
 	//Constructors
 	public DungeonMaster() {
@@ -28,22 +24,10 @@ public class DungeonMaster {
 
 	//Getters and Setters
 	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 	public boolean getLoggedIn() {
 		return loggedIn;
 	}
 	
-	public void setLoggedIn(boolean loggedIn) {
-		this.loggedIn = loggedIn;
-	}
-
 	public ArrayList<GameChar> getNPCs() {
 		return npcs;
 	}
@@ -52,45 +36,35 @@ public class DungeonMaster {
 		npcs = nPCs;
 	}
 	
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	//TODO: Add Getters/Setters for Transactions
-	
 	//Add the given amount of experience to the given player
 	public void giveExperience(int experience, Player myPlayer) {
-		//TODO: myPlayer.addExperience(experience);
+		myPlayer.addExperience(experience);
 	}
 	
-	//If password is incorrect, loggedIn should stay false and ask the user to try again
-	public void logIn(String aUsername, String aPassword) {
-		if(aUsername.equals(username)) {
-			if(aPassword.equals(password)) {
-				loggedIn = true;
-				System.out.println("Log in successful");
-				return;
-			}
-			else
-			{
-				loggedIn = false;
-				System.out.println("Incorrect password. Please try again.");
-				return;
-			}
-		}
-		else {
-			System.out.println("Incorrect username. Please try again.");
-		}
-		
-	}
-	
-	public void logOut() {
-		loggedIn = false;
-	}
+//	//If password is incorrect, loggedIn should stay false and ask the user to try again
+//	public void logIn(String aUsername, String aPassword) {
+//		if(aUsername.equals(username)) {
+//			if(aPassword.equals(password)) {
+//				loggedIn = true;
+//				System.out.println("Log in successful");
+//				return;
+//			}
+//			else
+//			{
+//				loggedIn = false;
+//				System.out.println("Incorrect password. Please try again.");
+//				return;
+//			}
+//		}
+//		else {
+//			System.out.println("Incorrect username. Please try again.");
+//		}
+//		
+//	}
+//	
+//	public void logOut() {
+//		loggedIn = false;
+//	}
 	
 	//TODO: Add NPC to NPCs arraylist
 	//Should these parameters be changed?
