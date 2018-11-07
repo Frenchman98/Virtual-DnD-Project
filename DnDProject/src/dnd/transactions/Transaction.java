@@ -2,13 +2,13 @@ package dnd.transactions;
 
 import java.util.*;
 
-import dnd.players.Player;
+import dnd.players.Person;
 
 public class Transaction {
 	
 	//Alli: I would recommend changing Player to Person since a DM is not a Player but both Player and DM are Person
-	private Player Buyer;
-	private Player Seller;
+	private Person Buyer;
+	private Person Seller;
 	private int Amount;
 	
 	public Transaction() {
@@ -17,11 +17,11 @@ public class Transaction {
 		Amount = 0;
 	}
 	
-	public Player getSeller() {
+	public Person getSeller() {
 		return this.Seller;
 	}
 	
-	public Player getBuyer() {
+	public Person getBuyer() {
 		return this.Buyer;
 	}
 	
@@ -29,11 +29,11 @@ public class Transaction {
 		return this.Amount;
 	}
 	
-	public void setSeller(Player s) {
+	public void setSeller(Person s) {
 		this.Seller = s;
 	}
 	
-	public void setBuyer(Player b) {
+	public void setBuyer(Person b) {
 		this.Buyer = b;
 	}
 	

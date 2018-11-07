@@ -25,12 +25,14 @@ public class XPSkillTransaction extends Transaction {
 		this.skillPurchased = s;
 	}
 	
+	//TODO: Figure out a way to access character and player through person, or find a way to handle DM transactions differently.
+	
 	public void addSkillToBuyer() {
 		super.getBuyer().getTheCharacter().addSkill(skillPurchased);
 	}
 	
 	public void removeExperienceFromBuyer() {
-		super.getBuyer().subtractExperinece(super.getAmount());
+		super.getBuyer().subtractExperience(super.getAmount());
 	}
 	
 	public void addExperienceToSeller() {
