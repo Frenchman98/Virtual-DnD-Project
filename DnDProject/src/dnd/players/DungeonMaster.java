@@ -11,15 +11,15 @@ public class DungeonMaster extends Person{
 	
 	//Constructors
 	public DungeonMaster() {
-		username = "Unknown DM Username";
-		password = "Unknown DM password";
+		this.setUsername("Unknown DM Username");
+		this.setPassword("Unknown DM password");
 		loggedIn = false;
 		
 	}
 	
 	public DungeonMaster(String username, String myPSWD) {
-		this.username = username;
-		password = myPSWD;
+		this.setUsername(username);
+		this.setPassword(myPSWD);
 		loggedIn = false;
 	}
 

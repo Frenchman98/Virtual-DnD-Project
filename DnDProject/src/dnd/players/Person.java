@@ -7,8 +7,8 @@ import dnd.transactions.Transaction;
 import dnd.transactions.XPSkillTransaction;
 
 public abstract class Person {
-	protected String username;
-	protected String password;
+	private String username;
+	private String password;
 	protected boolean loggedIn = false;
 	protected ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 	
