@@ -5,10 +5,17 @@ public class Armor extends Resource
 	private Integer protectionPoints;
 	private String locationCovered;
 	
-	Armor()
+	public Armor()
 	{
 		protectionPoints = null;
 		locationCovered = "";
+	}
+	
+	public Armor(Integer price, Integer protPoints, String name, String locCovered)
+	{
+		super(price, name);
+		protectionPoints = protPoints;
+		locationCovered = locCovered;
 	}
 	
 	public Integer getProtectionPoints() {

@@ -5,10 +5,17 @@ public class Weapon extends Resource
 	private Integer Damage;
 	private String Type;
 	
-	Weapon()
+	public Weapon()
 	{
 		Damage = null;
 		Type = "";
+	}
+	
+	public Weapon(Integer price, Integer damage, String name, String type)
+	{
+		super(price, name);
+		Damage = damage;
+		Type = type;
 	}
 	
 	public Integer getDamage() {
