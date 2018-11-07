@@ -106,6 +106,7 @@ public class GameChar {
 	//TODO: After resource transaction, add Resource
 	public void addResource(Resource aResource) {
 		resources.add(aResource);
+		
 	}
 	
 	//TODO: After XP transaction, add Skill
