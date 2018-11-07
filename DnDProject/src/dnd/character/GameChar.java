@@ -106,7 +106,6 @@ public class GameChar {
 	//TODO: After resource transaction, add Resource
 	public void addResource(Resource aResource) {
 		resources.add(aResource);
-		
 	}
 	
 	//TODO: After XP transaction, add Skill
@@ -155,6 +154,14 @@ public class GameChar {
 	
 	public void removeSecondaryPoints(int points, String stat) {
 		secondary.addPoints(points * -1, stat);
+	}
+	
+	public void addMoney(int _money) {
+		money += _money;
+	}
+	
+	public void removeMoney(int _money) {
+		money -= _money;
 	}
 
 }
