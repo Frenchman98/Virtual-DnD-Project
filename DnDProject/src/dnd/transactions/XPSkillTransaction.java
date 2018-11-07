@@ -35,8 +35,4 @@ public class XPSkillTransaction extends Transaction {
 		super.getBuyer().subtractExperience(super.getAmount());
 	}
 	
-	public void addExperienceToSeller() {
-		super.getSeller().addExperience(super.getAmount());
-	}
-	
 }
