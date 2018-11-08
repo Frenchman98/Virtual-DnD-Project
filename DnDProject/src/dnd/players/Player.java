@@ -6,7 +6,7 @@ import dnd.resources.Weapon;
 import dnd.transactions.*;
 
 public class Player extends Person{
-	private int experience;
+	private int experience = 0;
 	private GameChar theCharacter;
 	
 	//Constructors
@@ -14,11 +14,13 @@ public class Player extends Person{
 		this.setUsername("Unknown username");
 		this.setPassword("Unknown password");
 		theCharacter.setName("Unknown name for Player");
+		experience = 0;
 	}
 	
 	public Player(String username, String password) {
 		this.setUsername(username);
 		this.setPassword(password);
+		experience = 0;
 	}
 
 	//Getters and Setters

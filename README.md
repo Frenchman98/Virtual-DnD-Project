@@ -1,2 +1,5 @@
 # 373-Project
 ECE 373 D&amp;D Project
+The purpose of this D&D Project is to computerize the character creation and transaction system for the popular table top games "Dungeons and Dragons" and "Warhammer." This will help DMs and players of the table top game quicken the pace of the game and handle the necessary math and tracking that a normal Character Sheet would require.
+The driver will create a Dungeon Master (DM), a player, a character for the player, a NPC for the DM, weapons, and armor. The program will ask for user input, mostly for names, passwords, and other decisions that are made by players. It will then execute multiple transactions between a player's character and the DM's NPC. Other methods, such as certain setters and equipping Armor/Weapon, will be tested as well.
+Please see the problem description, use case diagram, domain class diagram, and state diagram to further understand the system.
