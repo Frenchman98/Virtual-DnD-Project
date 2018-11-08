@@ -12,10 +12,10 @@ public class GameChar {
 	private int money = 0;
 	//private int experience = 0;
 	private ArrayList<Resource> resources = new ArrayList<Resource>();
-	private PrimaryProfile primary;
-	private SecondaryProfile secondary;
-	private Armor equippedArmor;
-	private Weapon equippedWeapon;
+	private PrimaryProfile primary = new PrimaryProfile();
+	private SecondaryProfile secondary = new SecondaryProfile();
+	private Armor equippedArmor = null;
+	private Weapon equippedWeapon = null;
 	private ArrayList<Skill> skills = new ArrayList<Skill>();
 	
 	//Constructors
