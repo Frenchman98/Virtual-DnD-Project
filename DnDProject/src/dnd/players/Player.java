@@ -11,14 +11,14 @@ public class Player extends Person{
 	
 	//Constructors
 	public Player() {
-		username = "Unknown username";
-		password = "Unknown password";
+		this.setUsername("Unknown username");
+		this.setPassword("Unknown password");
 		theCharacter.setName("Unknown name for Player");
 	}
 	
 	public Player(String username, String password) {
-		this.username = username;
-		this.password = password;
+		this.setUsername(username);
+		this.setPassword(password);
 	}
 
 	//Getters and Setters
