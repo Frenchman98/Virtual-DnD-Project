@@ -25,14 +25,15 @@ public class PrimaryProfile {
 	
 	public PrimaryProfile(int weaponSkill, int ballisticSkill, int strength, int toughness, int agility, int intelligence, int willpower, int fellowship) 
 	{
-		this.weaponSkill = weaponSkill;
-		this.ballisticSkill = ballisticSkill;
-		this.strength = strength;
-		this.toughness = toughness;
-		this.agility = agility;
-		this.intelligence = intelligence;
-		this.willpower = willpower;
-		this.fellowship = fellowship;
+		//use set so that way value over 100 case is checked
+		this.setWeaponSkill(weaponSkill);
+		this.setBallisticSkill(ballisticSkill);
+		this.setStrength(strength);
+		this.setToughness(toughness);
+		this.setAgility(agility);
+		this.setIntelligence(intelligence);
+		this.setWillpower(willpower);
+		this.setFellowship(fellowship);
 			
 	}
 
