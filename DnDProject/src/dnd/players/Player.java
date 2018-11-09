@@ -13,6 +13,7 @@ public class Player extends Person{
 	public Player() {
 		this.setUsername("Unknown username");
 		this.setPassword("Unknown password");
+		theCharacter = new GameChar();
 		theCharacter.setName("Unknown name for Player");
 		experience = 0;
 	}

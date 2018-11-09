@@ -69,11 +69,11 @@ public class Driver1 {
 		//Have them keep logging in until they get it right
 		while(!myPlayer.isLoggedIn()) 
 		{
-			System.out.println("Please log in for the DM. Enter the username: ");
+			System.out.println("Please log in for the Player. Enter the username: ");
 			String playerUsername = keyboard.nextLine();
 			System.out.println("Enter the password: ");
 			String playerPassword = keyboard.nextLine();
-			myDM.logIn(playerUsername, playerPassword);
+			myPlayer.logIn(playerUsername, playerPassword);
 		}
 
 		//3.) Create the Player’s character
@@ -122,8 +122,7 @@ public class Driver1 {
 		transaction1.MakeNPCTransaction(myPlayer, npc1, rToTransact, rToTransact.getPrice());
 		
 		//6.) Execute an XP transaction between DM and the Player
-		System.out.println("Testing XP/Skill transaction with DM…");
-		System.out.println("New skill with price 20 being created: ");
+		System.out.println("\nTesting XP/Skill transaction with DM… (will intentionally fail)");
 		
 		Skill coding = new Skill("Coding", "Magic", 20);
 		XPSkillTransaction transaction2 = new XPSkillTransaction();
