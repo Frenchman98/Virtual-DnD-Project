@@ -9,17 +9,23 @@ public class Transaction {
 	
 	//Alli: I would recommend changing Player to Person since a DM is not a Player but both Player and DM are Person
 	private Player Buyer;
-	private Person Seller;
+	private Player Seller;
+	private Person DM;
 	private int Amount;
 	
 	public Transaction() {
 		Buyer = null;
 		Seller = null;
+		DM = null;
 		Amount = 0;
 	}
 	
-	public Person getSeller() {
+	public Player getSeller() {
 		return this.Seller;
+	}
+	
+	public Person getDM() {
+		return this.DM;
 	}
 	
 	public Player getBuyer() {
@@ -30,8 +36,12 @@ public class Transaction {
 		return this.Amount;
 	}
 	
-	public void setSeller(Person s) {
+	public void setSeller(Player s) {
 		this.Seller = s;
+	}
+	
+	public void setDM(Person dm) {
+		this.DM = dm;
 	}
 	
 	public void setBuyer(Player b) {

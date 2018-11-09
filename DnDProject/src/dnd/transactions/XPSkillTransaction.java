@@ -2,6 +2,7 @@ package dnd.transactions;
 
 import java.util.*;
 
+import dnd.players.Player;
 import dnd.skills.Skill;
 
 public class XPSkillTransaction extends Transaction {
@@ -10,6 +11,24 @@ public class XPSkillTransaction extends Transaction {
 	
 	public XPSkillTransaction() {
 		skillPurchased = null;
+	}
+	
+	public void MakeTransaction(Player buyer, Skill skill, int amount) {
+		super.setBuyer(buyer);
+		setSkillPurchased(skill);
+		super.setAmount(amount);
+		
+		if (buyer.getExperience() < amount)
+		{
+			System.out.println(buyer.getUsername() + " has insufficient experience (" + buyer.getExperience() + " XP) to buy the skill " + skill.getName() + " (" + amount + " XP). Aborting transaction.");
+			return;
+		}
+		else
+		{
+			this.removeExperienceFromBuyer();
+			this.addSkillToBuyer();
+			System.out.println(buyer.getUsername() + " has successfully bought the skill " + skill.getName() + ".");
+		}
 	}
 	
 	public XPSkillTransaction(Skill skill, int amount) {
@@ -24,8 +43,6 @@ public class XPSkillTransaction extends Transaction {
 	public void setSkillPurchased(Skill s) {
 		this.skillPurchased = s;
 	}
-	
-	//TODO: Figure out a way to access character and player through person, or find a way to handle DM transactions differently.
 	
 	public void addSkillToBuyer() {
 		super.getBuyer().getTheCharacter().addSkill(skillPurchased);
