@@ -2,6 +2,7 @@ package dnd.transactions;
 
 import java.util.*;
 
+import dnd.character.GameChar;
 import dnd.players.Person;
 import dnd.players.Player;
 import dnd.resources.Resource;
@@ -37,6 +38,25 @@ public class ResourceTransaction extends Transaction {
 	
 	public void MakeDMTransaction(Player buyer, Person dm, Resource _resource, int amount) {
 		super.setDM(dm);
+		super.setBuyer(buyer);
+		setResource(_resource);
+		super.setAmount(amount);
+		
+		if (buyer.getTheCharacter().getMoney() < amount)
+		{
+			System.out.println(buyer.getTheCharacter().getName() + " has insufficient money ($" + buyer.getTheCharacter().getMoney() + ") to buy a " + _resource.getName() + " ($" + amount + "). Aborting transaction.");
+			return;
+		}
+		else
+		{
+			this.removeMoneyFromBuyer();
+			this.addResourceToBuyer();
+			System.out.println(buyer.getTheCharacter().getName() + " has successfully bought a " + _resource.getName() + " from the Dungeon Master.");
+		}
+	}
+	
+	public void MakeNPCTransaction(Player buyer, GameChar npc, Resource _resource, int amount) {
+		super.setNPC(npc);
 		super.setBuyer(buyer);
 		setResource(_resource);
 		super.setAmount(amount);

@@ -2,6 +2,7 @@ package dnd.transactions;
 
 import java.util.*;
 
+import dnd.character.GameChar;
 import dnd.players.Person;
 import dnd.players.Player;
 
@@ -11,6 +12,7 @@ public class Transaction {
 	private Player Buyer;
 	private Player Seller;
 	private Person DM;
+	private GameChar NPC;
 	private int Amount;
 	
 	public Transaction() {
@@ -32,12 +34,20 @@ public class Transaction {
 		return this.Buyer;
 	}
 	
+	public GameChar getNPC() {
+		return this.NPC;
+	}
+	
 	public int getAmount() {
 		return this.Amount;
 	}
 	
 	public void setSeller(Player s) {
 		this.Seller = s;
+	}
+	
+	public void setNPC(GameChar npc) {
+		this.NPC = npc;
 	}
 	
 	public void setDM(Person dm) {
