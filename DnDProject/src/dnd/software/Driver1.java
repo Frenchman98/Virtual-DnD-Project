@@ -1,4 +1,4 @@
-package dnd.players;
+package dnd.software;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class Driver1 {
 	//TODOs: 
 //1.) Create a DM 
 //2.) Create a Player 
-//3.) Create the Player’s character 
+//3.) Create the Playerï¿½s character 
 //4.) Create a NPC for the DM
 //5.) Execute a resource transaction between the NPC and the Player
 //6.) Execute an XP transaction between DM and the Player
@@ -76,13 +76,13 @@ public class Driver1 {
 			myPlayer.logIn(playerUsername, playerPassword);
 		}
 
-		//3.) Create the Player’s character
+		//3.) Create the Playerï¿½s character
 		//Have the player create their character
-		System.out.println("Enter the character’s name for Player: " + myPlayer.getUsername());	
+		System.out.println("Enter the characterï¿½s name for Player: " + myPlayer.getUsername());	
 		String gameCharName = keyboard.nextLine();
-		System.out.println("Enter the character’s race for Player: " + myPlayer.getUsername());
+		System.out.println("Enter the characterï¿½s race for Player: " + myPlayer.getUsername());
 		String gameCharRace = keyboard.nextLine();
-		System.out.println("Creating character…");
+		System.out.println("Creating characterï¿½");
 		GameChar myGameCharacter = new GameChar(gameCharName, gameCharRace);
 		PrimaryProfile myPrimaryProfile = new PrimaryProfile(40,35,30,40,37,20,30,22);
 		SecondaryProfile mySecondaryProfile = new SecondaryProfile(3,0,2,4,5,2,1);
@@ -105,7 +105,7 @@ public class Driver1 {
 		
 		
 		//5.) Execute a resource transaction between the NPC and the Player
-		System.out.println("Testing resource transaction with NPC…");
+		System.out.println("Testing resource transaction with NPCï¿½");
 		System.out.println("Choose which resource you would like to buy from the NPC: ");
 		for (int i = 0; i < npc1.getResources().size(); i++)
 		{
@@ -122,7 +122,7 @@ public class Driver1 {
 		transaction1.MakeNPCTransaction(myPlayer, npc1, rToTransact, rToTransact.getPrice());
 		
 		//6.) Execute an XP transaction between DM and the Player
-		System.out.println("\nTesting XP/Skill transaction with DM… (will intentionally fail)");
+		System.out.println("\nTesting XP/Skill transaction with DMï¿½ (will intentionally fail)");
 		
 		Skill coding = new Skill("Coding", "Magic", 20);
 		XPSkillTransaction transaction2 = new XPSkillTransaction();

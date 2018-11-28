@@ -1,4 +1,4 @@
-package dnd.players;
+package dnd.software;
 
 public class DnDGUI {
 

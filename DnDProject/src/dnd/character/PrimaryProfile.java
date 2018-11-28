@@ -11,7 +11,7 @@ public class PrimaryProfile {
 	private int fellowship;
 	
 	//Constructors
-	//TODO: Constructor where base stats are based off of race
+	
 	public PrimaryProfile() {
 		weaponSkill = 0;
 		ballisticSkill = 0;
@@ -21,6 +21,53 @@ public class PrimaryProfile {
 		intelligence = 0;
 		willpower = 0;
 		fellowship = 0;
+	}
+	
+	//TODO: Constructor where base stats are based off of race
+	public PrimaryProfile(String race) {
+		switch(race) {
+		 case "Dwarf":
+		 	weaponSkill = 30;
+		 	ballisticSkill = 20;
+		 	strength = 20;
+		 	toughness = 30;
+		 	agility = 10;
+		 	intelligence = 20;
+		 	willpower = 20;
+		 	fellowship = 10;
+		 	break;
+		 case "Elf":
+			 weaponSkill = 20;
+			 ballisticSkill = 30;
+			 strength = 20;
+			 toughness = 20;
+			 agility = 30;
+			 intelligence = 20;
+			 willpower = 20;
+			 fellowship = 20; 
+			 break;
+		 case "Halfling":
+			 weaponSkill = 10;
+			 ballisticSkill = 30;
+			 strength = 10;
+			 toughness = 10;
+			 agility = 30;
+			 intelligence = 20;
+			 willpower = 20;
+			 fellowship = 30; 
+			 break;
+		 case "Human":
+			 weaponSkill = 20;
+			 ballisticSkill = 20;
+			 strength = 20;
+			 toughness = 20;
+			 agility = 20;
+			 intelligence = 20;
+			 willpower = 20;
+			 fellowship = 20; 
+			 break;
+		}
+		
 	}
 	
 	public PrimaryProfile(int weaponSkill, int ballisticSkill, int strength, int toughness, int agility, int intelligence, int willpower, int fellowship) 

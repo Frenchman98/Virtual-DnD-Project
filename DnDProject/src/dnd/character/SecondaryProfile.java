@@ -2,7 +2,7 @@ package dnd.character;
 
 public class SecondaryProfile {
 	private int numberOfAttacks;
-	private int wounds;
+	private int health;
 	private int strengthBonus;
 	private int toughnessBonus;
 	private int movementPoints;
@@ -10,10 +10,9 @@ public class SecondaryProfile {
 	private int fortunePoints;
 	
 	//Constructors
-	//TODO: Make the secondary profile dependent on race
 	public SecondaryProfile() {
-		numberOfAttacks = 0;
-		wounds = 0;
+		numberOfAttacks = 1;
+		health = 0;
 		strengthBonus = 0;
 		toughnessBonus = 0;
 		movementPoints = 0;
@@ -21,9 +20,40 @@ public class SecondaryProfile {
 		fortunePoints = 0;		
 	}
 	
-	public SecondaryProfile(int numberOfAttacks, int wounds, int strengthBonus, int toughnessBonus, int movementPoints, int insanityPoints, int fortunePoints) {
+	
+	public SecondaryProfile(String race, int strength, int toughness) {
+		numberOfAttacks = 1;
+		strengthBonus = strength / 10;
+		toughnessBonus = toughness / 10;
+		insanityPoints = 0;
+		switch(race) {
+		case "Dwarf":
+			health = 11;
+			movementPoints = 3;
+			fortunePoints = 1;
+			break;
+		case "Elf":
+			health = 9;
+			movementPoints = 5;
+			fortunePoints = 1;
+			break;
+		case "Halfling":
+			health = 8;
+			movementPoints = 4;
+			fortunePoints = 2;
+			break;
+		case "Human":
+			health = 10;
+			movementPoints = 4;
+			fortunePoints = 2;
+			break;
+		default:
+			System.out.println("Not a valid race. Must be Dwarf, Elf, Halfling, or Human.");
+		}
+	}
+	public SecondaryProfile(int numberOfAttacks, int health, int strengthBonus, int toughnessBonus, int movementPoints, int insanityPoints, int fortunePoints) {
 		this.numberOfAttacks = numberOfAttacks;
-		this.wounds = wounds;
+		this.health = health;
 		this.strengthBonus = strengthBonus;
 		this.toughnessBonus = toughnessBonus;
 		this.movementPoints = movementPoints;
@@ -48,18 +78,18 @@ public class SecondaryProfile {
 		}
 	}
 
-	public int getWounds() {
-		return wounds;
+	public int getHealth() {
+		return health;
 	}
 
-	public void setWounds(int wounds) {
-		if(wounds > 10) {
-			this.wounds = 10;
+	public void setHealth(int health) {
+		if(health > 10) {
+			this.health = 10;
 			System.out.println("Cannot have a stat greater than 10 in secondary profile.");
 		}
 		else
 		{
-			this.wounds = wounds;
+			this.health = health;
 		}
 	}
 
@@ -147,9 +177,9 @@ public class SecondaryProfile {
 				newVal += numberOfAttacks;
 				this.setNumberOfAttacks(newVal);
 				break;
-			case "Wounds":
-				newVal += wounds;
-				this.setWounds(newVal);
+			case "Health":
+				newVal += health;
+				this.setHealth(newVal);
 				break;
 			case "Strength Bonus":
 				newVal += strengthBonus;
@@ -172,7 +202,7 @@ public class SecondaryProfile {
 				this.setFortunePoints(newVal);
 				break;
 			default:
-				System.out.println("Not a valid type. Must be a Primary Skill.");
+				System.out.println("Not a valid type. Must be a Secondary Skill.");
 				break;
 			}	
 			

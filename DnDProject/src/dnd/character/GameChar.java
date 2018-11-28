@@ -27,6 +27,8 @@ public class GameChar {
 	public GameChar(String name, String race) {
 		this.name = name;
 		this.race = race;
+		primary = new PrimaryProfile(race);
+		secondary = new SecondaryProfile(race, primary.getStrength(), primary.getToughness());
 	}
 	
 	//Getters and Setters
