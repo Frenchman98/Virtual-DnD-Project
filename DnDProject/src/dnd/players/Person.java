@@ -67,7 +67,7 @@ public abstract class Person {
 			}
 		}
 		else {
-			System.out.println("Incorrect username. Please try again.");
+			System.out.println("Incorrect or nonexistent username. Please try again.");
 		}
 		
 	}

@@ -27,6 +27,7 @@ public class XPSkillTransaction extends Transaction {
 		{
 			this.removeExperienceFromBuyer();
 			this.addSkillToBuyer();
+			buyer.makeXPTransaction(this);
 			System.out.println(buyer.getUsername() + " has successfully bought the skill " + skill.getName() + ".");
 		}
 	}

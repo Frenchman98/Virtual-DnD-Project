@@ -70,6 +70,7 @@ public class ResourceTransaction extends Transaction {
 		{
 			this.removeMoneyFromBuyer();
 			this.addResourceToBuyer();
+			buyer.makeResourceTransaction(this);
 			System.out.println(buyer.getTheCharacter().getName() + " has successfully bought a " + _resource.getName() + " from the Dungeon Master.");
 		}
 	}

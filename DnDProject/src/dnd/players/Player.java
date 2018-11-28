@@ -90,15 +90,13 @@ public class Player extends Person{
 //			loggedIn = false;
 //	}
 	
-	//TODO: Add aTransaction and execute the transaction (remove money or experience
-	//Adds skill to Character
+	//Simply adds the transaction to the player's history
 	public void makeXPTransaction(XPSkillTransaction aTransaction) {
 		transactions.add(aTransaction);
 		
 	}
 	
-	//TODO: Add aTransaction and execute the transaction (remove money or experience
-	//Adds resource to Character
+	//Adds the transaction to the player's history
 	public void makeResourceTransaction(ResourceTransaction aTransaction) {
 		transactions.add(aTransaction);
 	}
