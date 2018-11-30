@@ -78,6 +78,7 @@ public class DungeonMaster extends Person{
 	
 	//TODO: Add NPC to NPCs arraylist
 	//Should these parameters be changed?
+	//How should we prompt the user to create an NPC?
 	public void createNPC(GameChar npc) {
 		npcs.add(npc);
 		
@@ -87,17 +88,33 @@ public class DungeonMaster extends Person{
 		npcs.remove(npc);
 	}
 	
-	//TODO: Add aTransaction and execute the transaction (remove money or experience
-	//Adds skill to Character
+	//Given an NPCs name, remove them from the list
+	public void deleteNPC(String name) {
+		for(GameChar npc: npcs) {
+			if(npc.getName() == name) {
+				npcs.remove(npc);
+			}
+		}
+	}
+	
+	//TODO: Should we have NPC manipulation methods? Such as manipulating their resources or profiles?
+	
+	//Called in the XPSkillTransaction methods
+	//This simply adds the transaction to history
 	public void makeXPTransaction(XPSkillTransaction aTransaction) {
 		transactions.add(aTransaction);
 		
 	}
 	
-	//TODO: Add aTransaction and execute the transaction (remove money or experience
-	//Adds resource to Character
+	//All is executed in Transaction classes
+	//This is simply to add the transaction to history
 	public void makeResourceTransaction(ResourceTransaction aTransaction) {
 		transactions.add(aTransaction);
+	}
+	
+	//TODO: Give money to players
+	public void giveMoney(int amount) {
+		
 	}
 
 }

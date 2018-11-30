@@ -1,4 +1,5 @@
 package dnd.character;
+import java.util.Random;
 
 public class PrimaryProfile {
 	private int weaponSkill;
@@ -9,6 +10,7 @@ public class PrimaryProfile {
 	private int intelligence;
 	private int willpower;
 	private int fellowship;
+	private Random rNum = new Random();
 	
 	//Constructors
 	
@@ -23,48 +25,49 @@ public class PrimaryProfile {
 		fellowship = 0;
 	}
 	
-	//TODO: Constructor where base stats are based off of race
+	//Constructor where base stats are based off of race
+	//Adds 2d10 results together
 	public PrimaryProfile(String race) {
 		switch(race) {
 		 case "Dwarf":
-		 	weaponSkill = 30;
-		 	ballisticSkill = 20;
-		 	strength = 20;
-		 	toughness = 30;
-		 	agility = 10;
-		 	intelligence = 20;
-		 	willpower = 20;
-		 	fellowship = 10;
+		 	weaponSkill = 30 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	ballisticSkill = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	strength = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	toughness = 30 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	agility = 10 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	intelligence = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	willpower = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+		 	fellowship = 10 + rNum.nextInt(10) + rNum.nextInt(10);
 		 	break;
 		 case "Elf":
-			 weaponSkill = 20;
-			 ballisticSkill = 30;
-			 strength = 20;
-			 toughness = 20;
-			 agility = 30;
-			 intelligence = 20;
-			 willpower = 20;
-			 fellowship = 20; 
+			 weaponSkill = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 ballisticSkill = 30 + rNum.nextInt(10) + rNum.nextInt(10);
+			 strength = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 toughness = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 agility = 30 + rNum.nextInt(10) + rNum.nextInt(10);
+			 intelligence = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 willpower = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 fellowship = 20 + rNum.nextInt(10) + rNum.nextInt(10); 
 			 break;
 		 case "Halfling":
-			 weaponSkill = 10;
-			 ballisticSkill = 30;
-			 strength = 10;
-			 toughness = 10;
-			 agility = 30;
-			 intelligence = 20;
-			 willpower = 20;
-			 fellowship = 30; 
+			 weaponSkill = 10 + rNum.nextInt(10) + rNum.nextInt(10);
+			 ballisticSkill = 30 + rNum.nextInt(10) + rNum.nextInt(10);
+			 strength = 10 + rNum.nextInt(10) + rNum.nextInt(10);
+			 toughness = 10 + rNum.nextInt(10) + rNum.nextInt(10);
+			 agility = 30 + rNum.nextInt(10) + rNum.nextInt(10);
+			 intelligence = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 willpower = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 fellowship = 30 + rNum.nextInt(10) + rNum.nextInt(10); 
 			 break;
 		 case "Human":
-			 weaponSkill = 20;
-			 ballisticSkill = 20;
-			 strength = 20;
-			 toughness = 20;
-			 agility = 20;
-			 intelligence = 20;
-			 willpower = 20;
-			 fellowship = 20; 
+			 weaponSkill = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 ballisticSkill = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 strength = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 toughness = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 agility = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 intelligence = 20 + rNum.nextInt(10 + rNum.nextInt(10));
+			 willpower = 20 + rNum.nextInt(10) + rNum.nextInt(10);
+			 fellowship = 20 + rNum.nextInt(10) + rNum.nextInt(10); 
 			 break;
 		}
 		
@@ -94,11 +97,11 @@ public class PrimaryProfile {
 		int newVal = this.weaponSkill + weaponSkill;
 		if(newVal > 100) {
 			this.weaponSkill = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
 		}
 		else if(newVal < 0) {
 			this.weaponSkill = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{
@@ -115,11 +118,11 @@ public class PrimaryProfile {
 		int newVal = this.ballisticSkill + ballisticSkill;
 		if(newVal > 100) {
 			this.ballisticSkill = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
 		}
 		else if(newVal < 0) {
 			this.ballisticSkill = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{
@@ -136,11 +139,11 @@ public class PrimaryProfile {
 		int newVal = this.strength + strength;
 		if(newVal > 100) {
 			this.strength = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
 		}
 		else if(newVal < 0) {
 			this.strength = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{
@@ -157,11 +160,11 @@ public class PrimaryProfile {
 		int newVal = this.toughness + toughness;
 		if(newVal > 100) {
 			this.toughness = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
 		}
 		else if(newVal < 0) {
 			this.toughness = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{
@@ -178,11 +181,11 @@ public class PrimaryProfile {
 		int newVal = this.agility + agility;
 		if(newVal > 100) {
 			this.agility = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
 		}
 		else if(newVal < 0) {
 			this.agility = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{
@@ -199,11 +202,11 @@ public class PrimaryProfile {
 		int newVal = this.intelligence + intelligence;
 		if(newVal > 100) {
 			this.intelligence = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatially set to 100.");
 		}
 		else if(newVal < 0) {
 			this.intelligence = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{
@@ -220,11 +223,11 @@ public class PrimaryProfile {
 		int newVal = this.willpower + willpower;
 		if(newVal > 100) {
 			this.willpower = 100;
-			System.out.println("Cannot have a stat greater than 100 in primary profile.");
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
 		}
 		else if(newVal < 0) {
 			this.willpower = 0;
-			System.out.println("Cannot have a stat less than 0 in primary profile.");
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
 		}
 		else
 		{

@@ -21,6 +21,32 @@ public class Game implements Serializable{
 	}
 	
 	
+	public DungeonMaster getTheDM() {
+		return theDM;
+	}
+
+	public void setTheDM(DungeonMaster theDM) {
+		this.theDM = theDM;
+	}
+
+	public ArrayList<Player> getThePlayers() {
+		return thePlayers;
+	}
+
+	public void setThePlayers(ArrayList<Player> thePlayers) {
+		this.thePlayers = thePlayers;
+	}
+
+	public void addPlayer(Player myPlayer) {
+		thePlayers.add(myPlayer);
+	}
+	
+	public void removePlayer(Player myPlayer) {
+		thePlayers.remove(myPlayer);
+	}
+	
+	//TODO: Printing methods? Are they needed?
+
 	public static Game loadData() {
 		FileInputStream fileIn = null;
 		ObjectInputStream objIn = null;

@@ -11,7 +11,10 @@ public class GameChar {
 	private String race;
 	private int money = 0;
 	//private int experience = 0;
+	//TODO: Is resources needed?
 	private ArrayList<Resource> resources = new ArrayList<Resource>();
+	private ArrayList<Armor> armors = new ArrayList<Armor>();
+	private ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 	private PrimaryProfile primary = new PrimaryProfile();
 	private SecondaryProfile secondary = new SecondaryProfile();
 	private Armor equippedArmor = null;
@@ -105,19 +108,39 @@ public class GameChar {
 		equippedWeapon = weapon;
 	}
 	
-	//TODO: After resource transaction, add Resource
+	public ArrayList<Armor> getArmors(){
+		return armors;
+	}
+	
+	public void setArmors(ArrayList<Armor> armors) {
+		this.armors = armors;
+	}
+	
+	public ArrayList<Weapon> getWeapons(){
+		return weapons;
+	}
+	
+	public void setWeapons(ArrayList<Weapon> weapons) {
+		this.weapons = weapons;
+	}
+	
 	public void addResource(Resource aResource) {
 		resources.add(aResource);
 	}
 	
-	//TODO: After XP transaction, add Skill
+	//Called in XPSkillTransaciton
 	public void addSkill(Skill aSkill) {
 		skills.add(aSkill);
 	}
 	
+	//TODO: GenerateRandomSkills for Humans and Haflings
+	public void generateRandomSkills(String race, int diceRoll) {
+		
+	}
+	
 	//TODO: add points to primary profile stat
 	//Might change this
-	//TODO: If a Strength or Toughness has a new 10s place then
+	//If a Strength or Toughness has a new 10s place then
 	//Strength and Toughness Bonus need to be adjusted accordingly
 	public void addPrimaryPoints(int points, String stat) {
 		if(stat.equals("Strength")) {

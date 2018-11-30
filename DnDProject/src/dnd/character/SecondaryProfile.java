@@ -1,5 +1,7 @@
 package dnd.character;
 
+import java.util.Random;
+
 public class SecondaryProfile {
 	private int numberOfAttacks;
 	private int health;
@@ -8,6 +10,7 @@ public class SecondaryProfile {
 	private int movementPoints;
 	private int insanityPoints;
 	private int fortunePoints;
+	private Random rNum = new Random(); //this will account for creation
 	
 	//Constructors
 	public SecondaryProfile() {
@@ -23,29 +26,67 @@ public class SecondaryProfile {
 	
 	public SecondaryProfile(String race, int strength, int toughness) {
 		numberOfAttacks = 1;
+		health = 0;
 		strengthBonus = strength / 10;
 		toughnessBonus = toughness / 10;
 		insanityPoints = 0;
+		int firstRoll = rNum.nextInt();
+		int secondRoll = rNum.nextInt();
+		
+		//Health bonus based on dice roll
+		if(firstRoll >= 4 && firstRoll <= 6) {
+			health += 1;
+		}
+		else if(firstRoll >= 7 && firstRoll <= 9) {
+			health += 2;
+		}
+		else if(firstRoll == 10) {
+			health += 3;
+		}	
+		
 		switch(race) {
 		case "Dwarf":
-			health = 11;
+			health += 11;
 			movementPoints = 3;
 			fortunePoints = 1;
+			
+			//Fortune point bonus based on dice roll
+			if(secondRoll >= 5 && secondRoll <= 7) {
+				fortunePoints += 1;
+			}
+			else if(secondRoll >= 8 && secondRoll <= 10) {
+				fortunePoints += 2;
+			}
 			break;
 		case "Elf":
-			health = 9;
+			health += 9;
 			movementPoints = 5;
 			fortunePoints = 1;
+			
+			//Fortune point bonus based on dice roll
+			if(secondRoll >= 5 && secondRoll <= 10) {
+				fortunePoints += 1;
+			}
 			break;
 		case "Halfling":
-			health = 8;
+			health += 8;
 			movementPoints = 4;
 			fortunePoints = 2;
+			
+			//Fortune point bonus based on dice roll
+			if(secondRoll >= 8 && secondRoll <= 10) {
+				fortunePoints += 1;
+			}
 			break;
 		case "Human":
-			health = 10;
+			health += 10;
 			movementPoints = 4;
 			fortunePoints = 2;
+			
+			//Fortune point bonus based on dice roll
+			if(secondRoll >= 5 && secondRoll <= 10) {
+				fortunePoints += 1;
+			}
 			break;
 		default:
 			System.out.println("Not a valid race. Must be Dwarf, Elf, Halfling, or Human.");
@@ -169,44 +210,44 @@ public class SecondaryProfile {
 	}
 	
 	//Adds points to a specific type of skill
-		//The setter will check if the new value is greater than 10 and adjust accordingly
-		public void addPoints(int points, String type) {
-			int newVal = points;
-			switch(type) {
-			case "Number of Attacks":
-				newVal += numberOfAttacks;
-				this.setNumberOfAttacks(newVal);
-				break;
-			case "Health":
-				newVal += health;
-				this.setHealth(newVal);
-				break;
-			case "Strength Bonus":
-				newVal += strengthBonus;
-				this.setStrengthBonus(newVal);
-				break;
-			case "Toughness Bonus":
-				newVal += toughnessBonus;
-				this.setToughnessBonus(newVal);
-				break;
-			case "Movement Points":
-				newVal += movementPoints;
-				this.setMovementPoints(newVal);
-				break;
-			case "Insanity Points":
-				newVal += insanityPoints;
-				this.setInsanityPoints(newVal);
-				break;
-			case "Fortune Points":
-				newVal += fortunePoints;
-				this.setFortunePoints(newVal);
-				break;
-			default:
-				System.out.println("Not a valid type. Must be a Secondary Skill.");
-				break;
+	//The setter will check if the new value is greater than 10 and adjust accordingly
+	public void addPoints(int points, String type) {
+		int newVal = points;
+		switch(type) {
+		case "Number of Attacks":				
+			newVal += numberOfAttacks;
+			this.setNumberOfAttacks(newVal);
+			break;
+		case "Health":
+			newVal += health;				
+			this.setHealth(newVal);
+			break;
+		case "Strength Bonus":
+			newVal += strengthBonus;
+			this.setStrengthBonus(newVal);
+			break;
+		case "Toughness Bonus":
+			newVal += toughnessBonus;
+			this.setToughnessBonus(newVal);
+			break;
+		case "Movement Points":
+			newVal += movementPoints;
+			this.setMovementPoints(newVal);
+			break;
+		case "Insanity Points":
+			newVal += insanityPoints;
+			this.setInsanityPoints(newVal);
+			break;
+		case "Fortune Points":
+			newVal += fortunePoints;
+			this.setFortunePoints(newVal);
+			break;
+		default:
+			System.out.println("Not a valid type. Must be a Secondary Skill.");
+			break;
 			}	
 			
-		}
+	}
 	
 	
 	

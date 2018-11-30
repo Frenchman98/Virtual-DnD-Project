@@ -1,7 +1,13 @@
 package dnd.software;
 
+
 public class Driver2 {
 
-	//TODO: We need random dice roll to update the primary and secondary
-	//profiles for player's game character
+	//TODO: 
+	//This is just a temporary driver to test the GUI
+	public static void main(String[] args)
+	{
+		Game myGame = new Game();
+		DnDGUI dndGUIxs = new DnDGUI("DND GUI", myGame);    
+	}
 }

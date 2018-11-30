@@ -50,19 +50,41 @@ public class Player extends Person{
 		experience -= exp;
 	}
 	
-	//TODO: Change what Armor is currently equipped on Character
+	//Change what Armor is currently equipped on Character
 	//If Character doesn't own the armor then it cannot be equipped
 	//If they do, change setEquippedArmor
 	public void changeArmor(Armor aArmor) {
-		theCharacter.setEquippedArmor(aArmor);
-		
+		boolean owns = false;
+		for(Armor armor : theCharacter.getArmors()) {
+			if(armor.equals(aArmor)) {
+				owns = true;
+			}
+		}
+		if(owns) {
+			theCharacter.setEquippedArmor(aArmor);
+		}
+		else {
+			System.out.println("You cannot equip Armor you don't own");
+		}
 	}
 	
-	//TODO: Change what Weapon is currently equipped on Character
+	//Change what Weapon is currently equipped on Character
 	//If character doesn't own the weapon then it cannot be equipped
 	//If they do, change setEquippedWeapon
 	public void changeWeapon(Weapon aWeapon) {
-		theCharacter.setEquippedWeapon(aWeapon);
+		boolean owns = false;
+		for(Weapon weapon : theCharacter.getWeapons()) {
+			if(weapon.equals(aWeapon)) {
+				owns = true;
+			}
+		}
+		if(owns) {
+			theCharacter.setEquippedWeapon(aWeapon);
+		}
+		else
+		{
+			System.out.println("You cannot equip Weapon you don't own");
+		}
 		
 	}
 	
