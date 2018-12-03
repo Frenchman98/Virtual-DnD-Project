@@ -70,6 +70,8 @@ public class PrimaryProfile implements Serializable{
 			 willpower = 20 + rNum.nextInt(10) + rNum.nextInt(10);
 			 fellowship = 20 + rNum.nextInt(10) + rNum.nextInt(10); 
 			 break;
+		 default:
+			 System.out.println("Not a valid race. Must be Dwarf, Elf, Halfling, or Human.");
 		}
 		
 	}
