@@ -31,7 +31,7 @@ public class Game implements Serializable{
 	
 	public void createDM(String aUsername, String aPassword) {
 		if(theDM != null) {
-			System.out.println("The DM already exists.");
+			System.out.println("The DM " + theDM.getUsername() + " already exists.");
 		}
 		else {
 			theDM = new DungeonMaster(aUsername, aPassword);
@@ -39,12 +39,6 @@ public class Game implements Serializable{
 	}
 	
 	public void createPlayer(String aUsername, String aPassword) {
-		for(Player myP : thePlayers) {
-			if((myP.getUsername()).equals(aUsername)) {
-				System.out.println("Player " + aUsername + " already exists.");
-				return;
-			}
-		}
 		Player newPlayer = new Player(aUsername, aPassword);
 		this.addPlayer(newPlayer);
 	}
@@ -66,6 +60,12 @@ public class Game implements Serializable{
 	}
 
 	public void addPlayer(Player myPlayer) {
+		for(Player myP : thePlayers) {
+			if((myP.getUsername()).equals(myPlayer.getUsername())) {
+				System.out.println("Player " + myP.getUsername() + " already exists.");
+				return;
+			}
+		}
 		thePlayers.add(myPlayer);
 	}
 	
@@ -76,7 +76,10 @@ public class Game implements Serializable{
 	public void logInPlayer(String aUsername, String aPassword) {
 		boolean foundPlayer = false;
 		if(dmLoggedIn) {
-			System.out.println("The DM is currently logged in");
+			System.out.println("The DM is currently logged in.");
+		}
+		else if(playerLoggedIn) {
+			System.out.println("A player is already logged in.");
 		}
 		else {
 			for(Player myP : thePlayers) {
@@ -96,6 +99,9 @@ public class Game implements Serializable{
 		if(playerLoggedIn) {
 			System.out.println("A player is currently logged in.");
 		}
+		else if(dmLoggedIn) {
+			System.out.println("The DM is already logged in.");
+		}
 		else {
 			theDM.logIn(aUsername, aPassword);
 			dmLoggedIn = theDM.isLoggedIn();
@@ -112,6 +118,7 @@ public class Game implements Serializable{
 		else
 		{
 			theDM.logOut();
+			dmLoggedIn = theDM.isLoggedIn();
 			System.out.println("Successfully logged out the DM.");
 		}
 	}
@@ -121,10 +128,12 @@ public class Game implements Serializable{
 			for(Player myP : thePlayers) {
 				if(myP.isLoggedIn()) {
 					myP.logOut();
-					System.out.println("Successfully logged out player" + myP.getUsername() );
+					playerLoggedIn = myP.isLoggedIn();
+					System.out.println("Successfully logged out player " + myP.getUsername() );
 					return;
 				}
 			}
+			System.out.println("Could not find the logged in player.");
 		}
 		else if(dmLoggedIn) {
 			System.out.println("The DM is currently logged in. Cannot log out.");

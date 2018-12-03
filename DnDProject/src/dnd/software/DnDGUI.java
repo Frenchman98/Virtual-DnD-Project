@@ -3,8 +3,13 @@ package dnd.software;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import javax.swing.*;
+
 
 
 public class DnDGUI extends JFrame{
@@ -107,6 +112,7 @@ public class DnDGUI extends JFrame{
 		playerCreateChar.addActionListener(new MenuListener());
 		playerXPTrans.addActionListener(new MenuListener());
 		playerResourceTrans.addActionListener(new MenuListener());
+		playerLogOut.addActionListener(new MenuListener());
 		
 		playersMenu.add(playerLogIn);
 		playersMenu.add(playerNewPlayer);
@@ -143,8 +149,20 @@ public class DnDGUI extends JFrame{
 			else if(source.equals(dmLogIn)) {
 				handleDMLogIn();
 			}
+			else if(source.equals(dmLogOut)) {
+				handleDMLogOut();
+			}
+			else if(source.equals(dmNewDM)) {
+				handleDMCreation();
+			}
 			else if(source.equals(playerLogIn)) {
-				handleLogIn();
+				handlePlayerLogIn();
+			}
+			else if(source.equals(playerLogOut)) {
+				handlePlayerLogOut();
+			}
+			else if(source.equals(playerNewPlayer)) {
+				handlePlayerCreation();
 			}
 			
 		}
@@ -168,22 +186,163 @@ public class DnDGUI extends JFrame{
 			System.exit(0);
 		}
 		
+		
 		//Method of DM logging in
+		//Prompts for a username and password
 		private void handleDMLogIn() {
-			//TODO: Prompt for username and password
-			if(game != null) {
-				//game.logInDM(aUsername, aPassword);
-			}
+			JTextField dmUsername = new JTextField();
+			JTextField dmPassword = new JTextField();
+			String usernameSel;
+			String passwordSel;	
+			
+			Object[]fields = {
+				"Username:", dmUsername,
+				"Password:", dmPassword
+				
+			};
+										//Text&JText Fields, header title, OK CANCEL Options 
+			JOptionPane.showConfirmDialog(null, fields, "Dungeon Master Log In", JOptionPane.OK_CANCEL_OPTION);
+			usernameSel = dmUsername.getText();
+			passwordSel = dmPassword.getText();
+			
+			//If there is a conflict want to have a popup
+			//Use CustomPrintStream to have System.out.println (NOT PRINT) go to JOptionPanes
+			CustomPrintStream printStream = new CustomPrintStream(); 
+			PrintStream standard = System.out; //IMPORTANT FOR RESETING PRINT BACK TO CONSOLE
+	        System.setOut(printStream); 
+	        //Call DM log in
+			game.logInDM(usernameSel, passwordSel);
+	        System.setOut(standard);
 		}
 		
-		private void handleLogIn() {
-			//TODO: Prompt for username and password
-			if(game != null) {
-				//game.logInPlayer(aUsername, aPassword);
-			}
+		private void handleDMLogOut() {
+			//If there is a conflict want to have a popup
+			//Use CustomPrintStream to have System.out.println (NOT PRINT) go to JOptionPanes
+			CustomPrintStream printStream = new CustomPrintStream(); 
+			PrintStream standard = System.out; //IMPORTANT FOR RESETING PRINT BACK TO CONSOLE
+	        System.setOut(printStream); 
+	        //Call DM log in
+			game.logOutDM();
+	        System.setOut(standard);
+		}
+		
+		private void handleDMCreation() {
+			JTextField dmUsername = new JTextField();
+			JTextField dmPassword = new JTextField();
+			String usernameSel;
+			String passwordSel;	
+			
+			Object[]fields = {
+				"New Username:", dmUsername,
+				"New Password:", dmPassword
+				
+			};
+										//Text&JText Fields, header title, OK CANCEL Options 
+			JOptionPane.showConfirmDialog(null, fields, "Dungeon Master Creation", JOptionPane.OK_CANCEL_OPTION);
+			usernameSel = dmUsername.getText();
+			passwordSel = dmPassword.getText();
+			
+			//If there is a conflict want to have a popup
+			//Use CustomPrintStream to have System.out.println (NOT PRINT) go to JOptionPanes
+			CustomPrintStream printStream = new CustomPrintStream(); 
+			PrintStream standard = System.out; //IMPORTANT FOR RESETING PRINT BACK TO CONSOLE
+	        System.setOut(printStream); 
+	        //Call DM log in
+			game.createDM(usernameSel, passwordSel);
+	        System.setOut(standard);
+		}
+		
+		//Method of player logging in
+		//Prompts for a username and password
+		private void handlePlayerLogIn() {
+			JTextField playerUsername = new JTextField();
+			JTextField playerPassword = new JTextField();
+			String usernameSel;
+			String passwordSel;	
+			
+			Object[]fields = {
+				"Username:", playerUsername,
+				"Password:", playerPassword
+				
+			};
+										//Text&JText Fields, header title, OK CANCEL Options 
+			JOptionPane.showConfirmDialog(null, fields, "Player Log In", JOptionPane.OK_CANCEL_OPTION);
+			usernameSel = playerUsername.getText();
+			passwordSel = playerPassword.getText();
+			
+			//If there is a conflict want to have a popup
+			//Use CustomPrintStream to have System.out.println (NOT PRINT) go to JOptionPanes
+			CustomPrintStream printStream = new CustomPrintStream(); 
+			PrintStream standard = System.out; //IMPORTANT FOR RESETING PRINT BACK TO CONSOLE
+	        System.setOut(printStream); 
+	        //Call player log in
+			game.logInPlayer(usernameSel, passwordSel);
+	        System.setOut(standard);
+		}
+		
+		private void handlePlayerLogOut() {
+			//If there is a conflict want to have a popup
+			//Use CustomPrintStream to have System.out.println (NOT PRINT) go to JOptionPanes
+			CustomPrintStream printStream = new CustomPrintStream(); 
+			PrintStream standard = System.out; //IMPORTANT FOR RESETING PRINT BACK TO CONSOLE
+	        System.setOut(printStream); 
+	        //Call DM log in
+	        game.logOutPlayer();
+	        System.setOut(standard);
+		}
+		
+		private void handlePlayerCreation() {
+			JTextField playerUsername = new JTextField();
+			JTextField playerPassword = new JTextField();
+			String usernameSel;
+			String passwordSel;	
+			
+			Object[]fields = {
+				"Username:", playerUsername,
+				"Password:", playerPassword
+				
+			};
+										//Text&JText Fields, header title, OK CANCEL Options 
+			JOptionPane.showConfirmDialog(null, fields, "Player Creation", JOptionPane.OK_CANCEL_OPTION);
+			usernameSel = playerUsername.getText();
+			passwordSel = playerPassword.getText();
+			
+			//If there is a conflict want to have a popup
+			//Use CustomPrintStream to have System.out.println (NOT PRINT) go to JOptionPanes
+			CustomPrintStream printStream = new CustomPrintStream(); 
+			PrintStream standard = System.out; //IMPORTANT FOR RESETING PRINT BACK TO CONSOLE
+	        System.setOut(printStream); 
+	        //Call player log in
+			game.createPlayer(usernameSel, passwordSel);
+	        System.setOut(standard);
 		}
 		
 	}
+	
+	//To handle JTextArea messages for System.outs
+	private class WindowOutputStream extends OutputStream{
+		private JTextArea text;
+		public WindowOutputStream(JTextArea t) {
+		text = t;
+	
+		}
+		//Need a write function
+		public void write(int a) throws IOException{
+			text.append(String.valueOf((char)a));
+			text.setCaretPosition(text.getDocument().getLength());
+		}
+	}
+	
+	//To handle JOptionPane messages for System.outs
+	public class CustomPrintStream extends PrintStream {  
+	    public CustomPrintStream() {  		      
+	    	super(new ByteArrayOutputStream());  
+		}  
+	    public void println(String msg) {  
+	        JOptionPane.showMessageDialog(null, msg);  		    
+	    }  
+	}  
+
 	
 	
 }

@@ -7,14 +7,12 @@ import dnd.transactions.*;
 
 public class Player extends Person{
 	private int experience = 0;
-	private GameChar theCharacter;
+	private GameChar theCharacter = null;
 	
 	//Constructors
 	public Player() {
 		this.setUsername("Unknown username");
 		this.setPassword("Unknown password");
-		theCharacter = new GameChar();
-		theCharacter.setName("Unknown name for Player");
 		experience = 0;
 	}
 	
@@ -48,6 +46,15 @@ public class Player extends Person{
 	
 	public void subtractExperience(int exp) {
 		experience -= exp;
+	}
+	
+	public void createCharacter(String name, String race) {
+		if(theCharacter != null) {
+			System.out.println("Character already exists for player " + this.getUsername());
+			return;
+		}
+		theCharacter = new GameChar(name, race);
+		System.out.println("Successfully created character " + name + " for user " + this.getUsername());
 	}
 	
 	//Change what Armor is currently equipped on Character
