@@ -54,6 +54,10 @@ public class Player extends Person{
 	//If Character doesn't own the armor then it cannot be equipped
 	//If they do, change setEquippedArmor
 	public void changeArmor(Armor aArmor) {
+		if(!this.isLoggedIn()) {
+			System.out.println("You must be logged in to change armor.");
+			return;
+		}
 		boolean owns = false;
 		for(Armor armor : theCharacter.getArmors()) {
 			if(armor.equals(aArmor)) {
@@ -72,6 +76,10 @@ public class Player extends Person{
 	//If character doesn't own the weapon then it cannot be equipped
 	//If they do, change setEquippedWeapon
 	public void changeWeapon(Weapon aWeapon) {
+		if(!this.isLoggedIn()) {
+			System.out.println("You must be logged in to change weapon.");
+			return;
+		}
 		boolean owns = false;
 		for(Weapon weapon : theCharacter.getWeapons()) {
 			if(weapon.equals(aWeapon)) {

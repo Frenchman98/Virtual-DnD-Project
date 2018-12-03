@@ -1,7 +1,8 @@
 package dnd.character;
+import java.io.Serializable;
 import java.util.Random;
 
-public class PrimaryProfile {
+public class PrimaryProfile implements Serializable{
 	private int weaponSkill;
 	private int ballisticSkill;
 	private int strength;

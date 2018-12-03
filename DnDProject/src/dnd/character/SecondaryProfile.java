@@ -1,8 +1,9 @@
 package dnd.character;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class SecondaryProfile {
+public class SecondaryProfile implements Serializable{
 	private int numberOfAttacks;
 	private int health;
 	private int strengthBonus;

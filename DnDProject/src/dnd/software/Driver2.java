@@ -8,6 +8,6 @@ public class Driver2 {
 	public static void main(String[] args)
 	{
 		Game myGame = new Game();
-		DnDGUI dndGUIxs = new DnDGUI("DND GUI", myGame);    
+		DnDGUI dndGUI = new DnDGUI("DnD GUI", myGame);    
 	}
 }

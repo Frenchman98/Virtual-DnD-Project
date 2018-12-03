@@ -14,12 +14,40 @@ import dnd.players.*;
 public class Game implements Serializable{
 	private DungeonMaster theDM;
 	private ArrayList<Player> thePlayers;
+	boolean playerLoggedIn = false;
+	boolean dmLoggedIn = false;
 	//TODO: Other attributes needed? Armor? Resources? Weapons?
 	public Game() {
 		theDM = new DungeonMaster();
 		thePlayers = new ArrayList<Player>();
 	}
 	
+	public Game(String dmUsername, String dmPassword) {
+		theDM = new DungeonMaster();
+		theDM.setUsername(dmUsername);
+		theDM.setPassword(dmPassword);
+		thePlayers = new ArrayList<Player>();
+	}
+	
+	public void createDM(String aUsername, String aPassword) {
+		if(theDM != null) {
+			System.out.println("The DM already exists.");
+		}
+		else {
+			theDM = new DungeonMaster(aUsername, aPassword);
+		}
+	}
+	
+	public void createPlayer(String aUsername, String aPassword) {
+		for(Player myP : thePlayers) {
+			if((myP.getUsername()).equals(aUsername)) {
+				System.out.println("Player " + aUsername + " already exists.");
+				return;
+			}
+		}
+		Player newPlayer = new Player(aUsername, aPassword);
+		this.addPlayer(newPlayer);
+	}
 	
 	public DungeonMaster getTheDM() {
 		return theDM;
@@ -45,6 +73,67 @@ public class Game implements Serializable{
 		thePlayers.remove(myPlayer);
 	}
 	
+	public void logInPlayer(String aUsername, String aPassword) {
+		boolean foundPlayer = false;
+		if(dmLoggedIn) {
+			System.out.println("The DM is currently logged in");
+		}
+		else {
+			for(Player myP : thePlayers) {
+				if((myP.getUsername()).equals(aUsername)) {
+					foundPlayer = true;
+					myP.logIn(aUsername, aPassword);
+					playerLoggedIn = myP.isLoggedIn();
+				}
+			}
+			if(!foundPlayer) {
+				System.out.println("Player with username " + aUsername + " does not exist.");
+			}
+		}
+	}
+	
+	public void logInDM(String aUsername, String aPassword) {
+		if(playerLoggedIn) {
+			System.out.println("A player is currently logged in.");
+		}
+		else {
+			theDM.logIn(aUsername, aPassword);
+			dmLoggedIn = theDM.isLoggedIn();
+		}
+	}
+	
+	public void logOutDM() {
+		if(playerLoggedIn) {
+			System.out.println("A player is currently logged in. Cannot log out.");
+		}
+		else if(!dmLoggedIn) {
+			System.out.println("The DM is not logged in. Cannot log out.");
+		}
+		else
+		{
+			theDM.logOut();
+			System.out.println("Successfully logged out the DM.");
+		}
+	}
+	
+	public void logOutPlayer() {
+		if(playerLoggedIn) {
+			for(Player myP : thePlayers) {
+				if(myP.isLoggedIn()) {
+					myP.logOut();
+					System.out.println("Successfully logged out player" + myP.getUsername() );
+					return;
+				}
+			}
+		}
+		else if(dmLoggedIn) {
+			System.out.println("The DM is currently logged in. Cannot log out.");
+		}
+		else
+		{
+			System.out.println("A player is not logged in. Cannot log out.");
+		}
+	}
 	//TODO: Printing methods? Are they needed?
 
 	public static Game loadData() {

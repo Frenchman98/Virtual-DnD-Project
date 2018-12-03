@@ -1,12 +1,13 @@
 package dnd.players;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import dnd.transactions.ResourceTransaction;
 import dnd.transactions.Transaction;
 import dnd.transactions.XPSkillTransaction;
 
-public abstract class Person {
+public abstract class Person implements Serializable{
 	private String username;
 	private String password;
 	protected boolean loggedIn = false;

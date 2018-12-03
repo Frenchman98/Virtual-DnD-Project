@@ -1,11 +1,12 @@
 package dnd.character;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import dnd.resources.*;
 import dnd.skills.*;
 
-public class GameChar {
+public class GameChar implements Serializable{
 	private String name;
 	//Change race to a type? Not sure
 	private String race;
