@@ -129,7 +129,7 @@ public class Driver1 {
 		transaction2.MakeTransaction(myPlayer, coding, coding.getPoints());
 		
 		//7.) Test all functions (?)
-
+		
 	}
 
 }

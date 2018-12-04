@@ -1,6 +1,7 @@
 package dnd.resources;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class MySQLAccess 
@@ -8,7 +9,13 @@ public class MySQLAccess
 	private static final String userName = "myuser";
 	private static final String password = "xxxx";
 	private static final String dbName = "dnddb";
+	private static final String connectionStr = 
+			"jdbc:mysql://localhost:3306/" + dbName + "?user=" + userName + "&password=" + password +
+			"&useUnicode=true&characterEncoding=UTF-8";
 	private static TABLE sel = null;
+	private static Connection conn = null;
+	private Statement stmt = null;
+	private Integer numRows = null;
 	
 	enum TABLE
 	{
@@ -17,24 +24,53 @@ public class MySQLAccess
 		ARMOURS;	
 	}
 	
+	public MySQLAccess(TABLE sel) throws SQLException
+	{
+        MySQLAccess.sel = sel;
+		// Step 1: Allocate a database 'Connection' object
+        System.out.println("Connecting database...");
+        
+		Connection conn = DriverManager.getConnection(connectionStr);
+    	System.out.println("Database connected!");
+        // Step 2: Allocate a 'Statement' object in the Connection
+        stmt = conn.createStatement();
+	}
+	
+
+    public void CloseConnections()
+    {
+    	try 
+    	{
+    		if (stmt != null)
+    		{
+    			stmt.close();
+    		}
+    		
+    		if (conn != null)
+    		{
+    			conn.close();
+    		}
+    	}
+    	catch (SQLException e)
+    	{
+    		e.printStackTrace();
+    	}
+    }
 	
 	public void setTableSelect(TABLE sel)
 	{
 		MySQLAccess.sel = sel;
 	}
-		
-	public static void readTable()
+	
+	// Gets the number of rows in the current table	
+	public Integer getNumRows()
 	{
-		try 
-		(
-		// Step 1: Allocate a database 'Connection' object
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useSSL=false", userName, password);
-        // 										MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
-				
-				
-        // Step 2: Allocate a 'Statement' object in the Connection
-        Statement stmt = conn.createStatement();
-				) 
+		return numRows;
+	}
+	
+	public void readTable()
+	{
+		try
 		{
 			String tableSel = ToString(sel);
 	        // Step 3: Execute a SQL SELECT query, the query result
@@ -58,8 +94,7 @@ public class MySQLAccess
 	        }
 	        System.out.println("Total number of " + tableSel + " = " + rowCount);
 	        
-	        // Closing the ResultSet
-	        rset.close();
+	        numRows = rowCount;
 		}
 		catch (SQLException e)
 		{
@@ -73,15 +108,6 @@ public class MySQLAccess
 	public void addToTable(String[] vals) throws SQLException, Exception
 	{
         try 
-        (
-    		
-			// Step 1: Allocate a database 'Connection' object
-	        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useSSL=false", userName, password);
-	        // 										MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
-	
-	        // Step 2: Allocate a 'Statement' object in the Connection
-	        Statement stmt = conn.createStatement();
-        		)
         {
         	String tableSel = ToString(sel);
         	
@@ -90,9 +116,6 @@ public class MySQLAccess
         	rst = stmt.executeQuery("select * from " + dbName + "." + tableSel); // Doing this to obtain metadata
         	
         	ResultSetMetaData rstMData= rst.getMetaData();
-        	
-        	// This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.jdbc.Driver");
             
             String input = GetPrepStmtInput(rstMData, tableSel);
             
@@ -110,9 +133,8 @@ public class MySQLAccess
 
             rst = stmt.executeQuery("select * from " + dbName + "." + tableSel);
             writeMetaData(rst);
-            	
-            ppdStmt.close();
-            rst.close();
+            
+            numRows++;
         } 
         catch (SQLException e) 
         {
@@ -121,23 +143,11 @@ public class MySQLAccess
     }
 	public void removeFromTable(int id) throws SQLException, Exception
 	{
-        try 
-        (
-    		
-			// Step 1: Allocate a database 'Connection' object
-	        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useSSL=false", userName, password);
-	        // 										MySQL: "jdbc:mysql://hostname:port/databaseName", "username", "password"
-	
-	        // Step 2: Allocate a 'Statement' object in the Connection
-	        Statement stmt = conn.createStatement();
-        		)
+        try
         {
         	String tableSel = ToString(sel);
         	
         	ResultSet rst;
-        	
-        	// This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.jdbc.Driver");
             
             String input = "delete from " + dbName + "." + tableSel + " where id= ?; ";
             
@@ -156,8 +166,7 @@ public class MySQLAccess
             rst = stmt.executeQuery("select * from " + dbName + "." + tableSel);
             writeMetaData(rst);
             
-            ppdStmt.close();
-            rst.close();
+            numRows--;
         } 
         catch (SQLException e) 
         {
@@ -165,9 +174,50 @@ public class MySQLAccess
         } 
     }
 	
-	public String[] getFromTable(int id, TABLE s)
+	public ArrayList<String> getRowFromTable(int id) throws SQLException, Exception
 	{
-		
+		ArrayList<String> rowData = null;
+		try 
+        {
+        	String tableSel = ToString(sel);
+        	
+        	ResultSet rst;
+            
+            String input = "select * from " + dbName + "." + tableSel + " where id= ?; ";
+            
+            // PreparedStatements can use variables and are more efficient
+            PreparedStatement ppdStmt = conn.prepareStatement(input);
+            // Parameters start with 1
+            ppdStmt.setInt(0, id);
+            rst = ppdStmt.executeQuery();
+            
+            rowData = getResultSetData(rst);
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+		return rowData; 
+	}
+	
+	private ArrayList<String> getResultSetData(ResultSet rst) throws SQLException
+	{
+		ResultSetMetaData mtData = rst.getMetaData();
+    	ArrayList<String> output = new ArrayList<String>();
+    	
+        // ResultSet is initially before the first data set
+        while (rst.next()) 
+        {
+            // It is possible to get the columns via name
+            // also possible to get the columns via the column number
+            // which starts at 1
+            // e.g. resultSet.getSTring(2);
+        	for (int i = 0; i < mtData.getColumnCount(); i++)
+        	{
+        		output.add(mtData.getColumnName(i) + ": " + rst.getString(mtData.getColumnName(i)));
+        	}
+        }
+        return output;
 	}
 	
     private void writeMetaData(ResultSet rst) throws SQLException 
@@ -294,5 +344,4 @@ public class MySQLAccess
     		}
     	}
     }
-    
 }
