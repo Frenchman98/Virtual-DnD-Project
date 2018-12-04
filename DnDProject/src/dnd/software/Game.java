@@ -29,6 +29,24 @@ public class Game implements Serializable{
 		thePlayers = new ArrayList<Player>();
 	}
 	
+	
+	
+	public boolean isPlayerLoggedIn() {
+		return playerLoggedIn;
+	}
+
+	public void setPlayerLoggedIn(boolean playerLoggedIn) {
+		this.playerLoggedIn = playerLoggedIn;
+	}
+
+	public boolean isDmLoggedIn() {
+		return dmLoggedIn;
+	}
+
+	public void setDmLoggedIn(boolean dmLoggedIn) {
+		this.dmLoggedIn = dmLoggedIn;
+	}
+
 	public void createDM(String aUsername, String aPassword) {
 		if(theDM != null) {
 			System.out.println("The DM " + theDM.getUsername() + " already exists.");
@@ -143,7 +161,33 @@ public class Game implements Serializable{
 			System.out.println("A player is not logged in. Cannot log out.");
 		}
 	}
-	//TODO: Printing methods? Are they needed?
+	
+	public void printAllInfo() {
+		if(dmLoggedIn) {
+			System.out.println("Printing All Information: ");
+			theDM.printInfo();
+			if(thePlayers.get(0) == null) {
+				return;
+			}
+			for(Player myP : thePlayers) {
+				myP.printPlayerInfo();
+			}
+			return;
+		}
+		else if(playerLoggedIn) {
+			System.out.println("Printing Player Information: ");
+			for(Player myP : thePlayers) {
+				if(myP.isLoggedIn()) {
+					myP.printPlayerInfo();
+					break;
+				}
+			}
+		}
+		else {
+			System.out.println("No one is currently logged in. Cannot print information.");
+		}
+		
+	}
 
 	public static Game loadData() {
 		FileInputStream fileIn = null;

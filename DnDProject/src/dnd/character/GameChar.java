@@ -167,6 +167,23 @@ public class GameChar implements Serializable{
 		
 	}
 	
+	public void printCharacterInfo() {
+		System.out.println("Name: " + name);
+		System.out.println("Race: " + race);
+		System.out.println("Money: " + money);
+		if(equippedArmor != null) {
+			System.out.println("Current Armor equipped: " + this.getEquippedArmor().getName());
+		}
+		if(equippedWeapon != null) {
+			System.out.println("Current Weapon equipped: " + this.getEquippedWeapon().getName());
+		}
+		System.out.println();
+		primary.printPrimaryProfile();
+		System.out.println();
+		secondary.printSecondaryProfile();
+		System.out.println();
+	}
+	
 	//TODO: add points to secondary profile stat
 	//Might change this
 	public void addSecondaryPoints(int points, String stat) {

@@ -250,6 +250,17 @@ public class SecondaryProfile implements Serializable{
 			
 	}
 	
+	public void printSecondaryProfile() {
+		System.out.println("Secondary Profile");
+		System.out.println("Number of attacks: " + numberOfAttacks);
+		System.out.println("Health: " + health);
+		System.out.println("Strength Bonus: " + strengthBonus);
+		System.out.println("Toughness Bonus: " + toughnessBonus);
+		System.out.println("Movement Points: " + movementPoints);
+		System.out.println("Insanity Points: " + insanityPoints);
+		System.out.println("Fortune Points: " + fortunePoints);
+	}
+	
 	
 	
 

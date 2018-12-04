@@ -45,10 +45,6 @@ public class DungeonMaster extends Person{
 	
 	//Add the given amount of experience to the given player
 	public void giveExperience(int experience, Player myPlayer) {
-		if(!this.isLoggedIn()) {
-			System.out.println("The DM must be logged in to give XP.");
-			return;
-		}
 		myPlayer.addExperience(experience);
 	}
 	
@@ -84,28 +80,16 @@ public class DungeonMaster extends Person{
 	//Should these parameters be changed?
 	//How should we prompt the user to create an NPC?
 	public void createNPC(GameChar npc) {
-		if(!this.isLoggedIn()) {
-			System.out.println("The DM must be logged in to create a NPC.");
-			return;
-		}
 		npcs.add(npc);
 		
 	}
 	
 	public void deleteNPC(GameChar npc) {
-		if(!this.isLoggedIn()) {
-			System.out.println("The DM must be logged in to delete a NPC.");
-			return;
-		}
 		npcs.remove(npc);
 	}
 	
 	//Given an NPCs name, remove them from the list
 	public void deleteNPC(String name) {
-		if(!this.isLoggedIn()) {
-			System.out.println("The DM must be logged in to delete a NPC.");
-			return;
-		}
 		for(GameChar npc: npcs) {
 			if(npc.getName() == name) {
 				npcs.remove(npc);
@@ -114,6 +98,7 @@ public class DungeonMaster extends Person{
 	}
 	
 	//TODO: Should we have NPC manipulation methods? Such as manipulating their resources or profiles?
+ 
 	
 	//Called in the XPSkillTransaction methods
 	//This simply adds the transaction to history
@@ -129,7 +114,36 @@ public class DungeonMaster extends Person{
 	}
 	
 	public void giveMoney(int amount, Player myPlayer) {
-		myPlayer.getTheCharacter().addMoney(amount);
+		if(this.isLoggedIn() && myPlayer.getTheCharacter() != null) {
+			myPlayer.getTheCharacter().addMoney(amount);
+		}
+		else if(myPlayer.getTheCharacter() == null) {
+			System.out.println("Player does not have a character. Cannot give money.");
+		}
+		else {
+			System.out.println("DM must be logged in to give money to a player's character.");
+		}
+	}
+	
+	public void printInfo() {
+		if(this.isLoggedIn()) {
+			System.out.println("Dungeon Master Information");
+			System.out.println("Username: " + this.getUsername() + "\n");
+			System.out.println("NPC information: ");
+			if(npcs.size() > 0) {
+				for(GameChar myNPC : npcs) {
+					System.out.println("Current NPC is " + myNPC.getName() + "\n");
+					myNPC.printCharacterInfo();
+					
+				}
+			}
+			else {
+				System.out.println("No NPCs created.\n");
+			}
+		}
+		else {
+			System.out.println("DM not logged in. Cannot print their information.");
+		}
 	}
 
 }

@@ -138,6 +138,16 @@ public class Player extends Person{
 		transactions.add(aTransaction);
 	}
 	
+	public void printPlayerInfo() {
+		System.out.println("Player Information");
+		System.out.println("Username: " + this.getUsername());
+		System.out.println("Unspent Experience: " + experience + "\n");
+		System.out.println("Character information: ");			
+		if(theCharacter != null) {
+			theCharacter.printCharacterInfo();
+		}
+
+	}
 	
 	
 	

@@ -244,7 +244,19 @@ public class PrimaryProfile implements Serializable{
 	}
 
 	public void setFellowship(int fellowship) {
-		this.fellowship = fellowship;
+		int newVal = this.fellowship + fellowship;
+		if(newVal > 100) {
+			this.fellowship = 100;
+			System.out.println("Cannot have a stat greater than 100 in primary profile. Automatically set to 100.");
+		}
+		else if(newVal < 0) {
+			this.fellowship = 0;
+			System.out.println("Cannot have a stat less than 0 in primary profile. Automatically set to 0.");
+		}
+		else
+		{
+			this.fellowship = fellowship;
+		}
 	}
 	
 	//Adds points to a specific type of skill
@@ -280,11 +292,27 @@ public class PrimaryProfile implements Serializable{
 			newVal += willpower;
 			this.setWillpower(newVal);
 			break;
+		case "Fellowship":
+			newVal += fellowship;
+			this.setFellowship(newVal);
+			break;
 		default:
 			System.out.println("Not a valid type. Must be a Primary Skill.");
 			break;
 		}	
 		
+	}
+	
+	public void printPrimaryProfile() {
+		System.out.println("Primary Profile");
+		System.out.println("Weapon skill: " + weaponSkill);
+		System.out.println("Ballistic skill: " + ballisticSkill);
+		System.out.println("Strength " + strength);
+		System.out.println("Toughness: " + toughness);
+		System.out.println("Agility: " + agility);
+		System.out.println("Intelligence: " + intelligence);
+		System.out.println("Willpower: " + willpower);
+		System.out.println("Fellowship: " + fellowship);
 	}
 	
 	
