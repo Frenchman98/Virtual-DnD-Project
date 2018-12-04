@@ -80,8 +80,7 @@ public class DungeonMaster extends Person{
 	//Should these parameters be changed?
 	//How should we prompt the user to create an NPC?
 	public void createNPC(GameChar npc) {
-		npcs.add(npc);
-		
+		npcs.add(npc);		
 	}
 	
 	public void deleteNPC(GameChar npc) {
@@ -98,7 +97,6 @@ public class DungeonMaster extends Person{
 	}
 	
 	//TODO: Should we have NPC manipulation methods? Such as manipulating their resources or profiles?
- 
 	
 	//Called in the XPSkillTransaction methods
 	//This simply adds the transaction to history

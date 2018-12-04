@@ -129,14 +129,19 @@ public class GameChar implements Serializable{
 		resources.add(aResource);
 	}
 	
+	public void addWeapon(Weapon aWeapon) {
+		weapons.add(aWeapon);
+		resources.add(aWeapon);
+	}
+	
+	public void addArmor(Armor aArmor) {
+		armors.add(aArmor);
+		resources.add(aArmor);
+	}
+	
 	//Called in XPSkillTransaciton
 	public void addSkill(Skill aSkill) {
 		skills.add(aSkill);
-	}
-	
-	//TODO: GenerateRandomSkills for Humans and Haflings
-	public void generateRandomSkills(String race, int diceRoll) {
-		
 	}
 	
 	//TODO: add points to primary profile stat
