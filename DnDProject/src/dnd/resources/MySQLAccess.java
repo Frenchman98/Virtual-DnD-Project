@@ -107,31 +107,36 @@ public class MySQLAccess
 	// value of it. The method creates the rows based on the values and type of table inputted
 	public void addToTable(String[] vals) throws SQLException, Exception
 	{
-        try 
+		try (
+				// Step 1: Allocate a database 'Connection' object
+				Connection connect = DriverManager.getConnection(connectionStr);
+		        // Step 2: Allocate a 'Statement' object in the Connection
+		        Statement statemnt = connect.createStatement();
+				) 
         {
         	String tableSel = ToString(sel);
         	
         	ResultSet rst;
         	
-        	rst = stmt.executeQuery("select * from " + dbName + "." + tableSel); // Doing this to obtain metadata
+        	rst = statemnt.executeQuery("select * from " + dbName + "." + tableSel); // Doing this to obtain metadata
         	
         	ResultSetMetaData rstMData= rst.getMetaData();
             
             String input = GetPrepStmtInput(rstMData, tableSel);
             
             // PreparedStatements can use variables and are more efficient
-            PreparedStatement ppdStmt = conn.prepareStatement(input);
+            PreparedStatement ppdStmt = connect.prepareStatement(input);
             // Parameters start with 1
             SetParameters(ppdStmt, vals, rstMData);
             ppdStmt.executeUpdate();
             
             System.out.println("Checking that the field was inserted into the database correctly...");
             
-            ppdStmt = conn.prepareStatement("select * from " + dbName + "." + tableSel);
+            ppdStmt = connect.prepareStatement("select * from " + dbName + "." + tableSel);
             rst = ppdStmt.executeQuery();
             writeResultSet(rst);
 
-            rst = stmt.executeQuery("select * from " + dbName + "." + tableSel);
+            rst = statemnt.executeQuery("select * from " + dbName + "." + tableSel);
             writeMetaData(rst);
             
             numRows++;
@@ -143,7 +148,12 @@ public class MySQLAccess
     }
 	public void removeFromTable(int id) throws SQLException, Exception
 	{
-        try
+		try (
+				// Step 1: Allocate a database 'Connection' object
+				Connection connect = DriverManager.getConnection(connectionStr);
+		        // Step 2: Allocate a 'Statement' object in the Connection
+		        Statement statemnt = connect.createStatement();
+				)
         {
         	String tableSel = ToString(sel);
         	
@@ -152,18 +162,18 @@ public class MySQLAccess
             String input = "delete from " + dbName + "." + tableSel + " where id= ?; ";
             
             // PreparedStatements can use variables and are more efficient
-            PreparedStatement ppdStmt = conn.prepareStatement(input);
+            PreparedStatement ppdStmt = connect.prepareStatement(input);
             // Parameters start with 1
-            ppdStmt.setInt(0, id);
+            ppdStmt.setInt(1, id);
             ppdStmt.executeUpdate();
             
             System.out.println("Checking that the field was deleted from the database correctly...");
             
-            ppdStmt = conn.prepareStatement("select * from " + dbName + "." + tableSel);
+            ppdStmt = connect.prepareStatement("select * from " + dbName + "." + tableSel);
             rst = ppdStmt.executeQuery();
             writeResultSet(rst);
 
-            rst = stmt.executeQuery("select * from " + dbName + "." + tableSel);
+            rst = statemnt.executeQuery("select * from " + dbName + "." + tableSel);
             writeMetaData(rst);
             
             numRows--;
@@ -177,8 +187,12 @@ public class MySQLAccess
 	public ArrayList<String> getRowFromTable(int id) throws SQLException, Exception
 	{
 		ArrayList<String> rowData = null;
-		try 
-        {
+		try (
+				// Step 1: Allocate a database 'Connection' object
+				Connection connect = DriverManager.getConnection(connectionStr);
+		        // Step 2: Allocate a 'Statement' object in the Connection
+		        Statement statemnt = connect.createStatement();
+				) {
         	String tableSel = ToString(sel);
         	
         	ResultSet rst;
@@ -186,9 +200,9 @@ public class MySQLAccess
             String input = "select * from " + dbName + "." + tableSel + " where id= ?; ";
             
             // PreparedStatements can use variables and are more efficient
-            PreparedStatement ppdStmt = conn.prepareStatement(input);
+            PreparedStatement ppdStmt = connect.prepareStatement(input);
             // Parameters start with 1
-            ppdStmt.setInt(0, id);
+            ppdStmt.setInt(1, id);
             rst = ppdStmt.executeQuery();
             
             rowData = getResultSetData(rst);

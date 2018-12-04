@@ -27,10 +27,18 @@ public class Driver3
 		
 		MySQLAccess dao = new MySQLAccess(TABLE.RACE);
 		dao.readTable();
-		dao.getRowFromTable(0);
-		dao.addToTable(new String[] {"Orcs"});
-		dao.removeFromTable(dao.getNumRows() - 1);
 		ArrayList<String> test = dao.getRowFromTable(0);
+		for (int i = 0; i < test.size(); i++)
+		{
+			System.out.println(test.get(i));
+		}
+		dao.readTable();
+		dao.addToTable(new String[] {"Orcs"});
+		dao.readTable();
+		dao.removeFromTable(dao.getNumRows() - 1);
+		dao.readTable();
+		
+		dao.readTable();
 		
 		dao.setTableSelect(TABLE.WEAPONS);
 		dao.readTable();
