@@ -17,7 +17,7 @@ public class MySQLAccess
 	private Statement stmt = null;
 	private Integer numRows = null;
 	
-	enum TABLE
+	public enum TABLE
 	{
 		RACE, 
 		WEAPONS,
